@@ -148,6 +148,21 @@ endif
 # EMBench repo var end
 
 ###############################################################################
+# Generate command to clone FORCE-RISCV
+ifeq ($(FORCE_RISCV_BRANCH), master)
+  TMP6 = git clone $(FORCE_RISCV_REPO) --recurse $(FORCE_RISCV_PKG)
+else
+  TMP6 = git clone -b $(FORCE_RISCV_BRANCH) --single-branch $(FORCE_RISCV_REPO) --recurse $(FORCE_RISCV_PKG)
+endif
+
+ifeq ($(FORCE_RISCV_HASH), head)
+  CLONE_FORCE_RISCV_CMD = $(TMP6)
+else
+  CLONE_FORCE_RISCV_CMD = $(TMP6); cd $(FORCE_RISCV_PKG); sleep 2; git checkout $(FORCE_RISCV_HASH)
+endif
+# FORCE-RISCV repo var end
+
+###############################################################################
 # Generate command to clone Spike for the Disassembler DPI (used in the isacov model)
 ifeq ($(DPI_DASM_SPIKE_BRANCH), master)
   TMP7 = git clone $(DPI_DASM_SPIKE_REPO) --recurse $(DPI_DASM_SPIKE_PKG)
@@ -626,6 +641,11 @@ vcs-unit-test:  firmware-unit-test-clean
 vcs-unit-test:  $(FIRMWARE)/firmware_unit_test.hex 
 vcs-unit-test:  vcsify $(FIRMWARE)/firmware_unit_test.hex
 vcs-unit-test:  vcs-run
+
+###############################################################################
+# FORCE-RISCV
+
+
 
 ###############################################################################
 # Build disassembler

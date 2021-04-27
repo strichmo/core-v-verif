@@ -128,6 +128,10 @@ COMPLIANCE_PKG   := $(CORE_V_VERIF)/$(CV_CORE_LC)/vendor_lib/riscv/riscv-complia
 EMBENCH_PKG	:= $(CORE_V_VERIF)/$(CV_CORE_LC)/vendor_lib/embench
 EMBENCH_TESTS	:= $(CORE_V_VERIF)/$(CV_CORE_LC)/tests/programs/embench
 
+# FORCE-RISCV
+FORCE_RISCV_PKG := $(CORE_V_VERIF)/$(CV_CORE_LC)/vendor_lib/force_riscv
+FORCE_HACK_PKG  := $(CORE_V_VERIF)/$(CV_CORE_LC)/vendor_lib/force_hack
+
 # Disassembler
 DPI_DASM_PKG       := $(CORE_V_VERIF)/lib/dpi_dasm
 DPI_DASM_SPIKE_PKG := $(CORE_V_VERIF)/$(CV_CORE_LC)/vendor_lib/dpi_dasm_spike
@@ -187,6 +191,9 @@ clone_embench:
 
 clone_dpi_dasm_spike:
 	$(CLONE_DPI_DASM_SPIKE_CMD)
+	
+clone_force_riscv:
+	$(CLONE_FORCE_RISCV_CMD)
 
 $(CV_CORE_PKG):
 	echo "Cloning"
@@ -203,6 +210,9 @@ $(EMBENCH_PKG):
 
 $(DPI_DASM_SPIKE_PKG):
 	$(CLONE_DPI_DASM_SPIKE_CMD)
+
+$(FORCE_RISCV_PKG):
+	$(CLONE_FORCE_RISCV_CMD)
 
 ###############################################################################
 # RISC-V Compliance Test-suite
@@ -352,3 +362,7 @@ clean_embench:
 
 clean_dpi_dasm_spike:
 	rm -rf $(DPI_DASM_SPIKE_PKG)
+
+clean_force_riscv:
+	rm -rf $(FORCE_RISCV_PKG)
+	
