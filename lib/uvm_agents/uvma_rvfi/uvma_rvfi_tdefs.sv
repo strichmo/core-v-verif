@@ -1,5 +1,6 @@
 // Copyright 2020 OpenHW Group
 // Copyright 2020 Datum Technology Corporation
+// Copyright 2020 Silicon Labs, Inc.
 // 
 // Licensed under the Solderpad Hardware Licence, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,15 +15,14 @@
 // limitations under the License.
 
 
-`ifndef __UVME_CV32E40X_CONSTANTS_SV__
-`define __UVME_CV32E40X_CONSTANTS_SV__
+`ifndef __UVMA_RVFI_TDEFS_SV__
+`define __UVMA_RVFI_TDEFS_SV__
 
+typedef enum bit[MODE_WL-1:0] {
+   UVMA_RVFI_U_MODE        = 0,
+   UVMA_RVFI_S_MODE        = 1,
+   UVMA_RVFI_RESERVED_MODE = 2,
+   UVMA_RVFI_M_MODE        = 3
+} uvma_rvfi_mode;
 
-parameter uvme_cv32e40x_sys_default_clk_period   =  1_500; // 10ns
-parameter uvme_cv32e40x_debug_default_clk_period = 10_000; // 10ns
-
-// For RVFI/RVVI
-parameter ILEN = 32;
-parameter XLEN = 32;
-
-`endif // __UVME_CV32E40X_CONSTANTS_SV__
+`endif // __UVMA_RVFI_TDEFS_SV__

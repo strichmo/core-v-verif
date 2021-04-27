@@ -1,6 +1,7 @@
 // 
 // Copyright 2020 OpenHW Group
 // Copyright 2020 Datum Technology Corporation
+// Copyright 2020 Silicon Labs, Inc.
 // 
 // Licensed under the Solderpad Hardware Licence, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,63 +16,57 @@
 // limitations under the License.
 // 
 
-
-`ifndef __UVMA_CLKNRST_PKG_SV__
-`define __UVMA_CLKNRST_PKG_SV__
+`ifndef __UVMA_RVVI_PKG_SV__
+`define __UVMA_RVVI_PKG_SV__
 
 
 // Pre-processor macros
 `include "uvm_macros.svh"
 `include "uvml_hrtbt_macros.sv"
-`include "uvma_clknrst_macros.sv"
-
-// Interface(s) / Module(s) / Checker(s)
-`include "uvma_clknrst_if.sv"
-`ifdef UVMA_CLKNRST_INC_IF_CHK
-`include "uvma_clknrst_if_chk.sv"
-`endif
-
+`include "uvma_rvvi_macros.sv"
 
 /**
  * Encapsulates all the types needed for an UVM agent capable of driving and/or
  * monitoring Clock & Reset.
  */
-package uvma_clknrst_pkg;
-   
+package uvma_rvvi_pkg;
+
    import uvm_pkg       ::*;
    import uvml_hrtbt_pkg::*;
    import uvml_trn_pkg  ::*;
    import uvml_logs_pkg ::*;
-   
+   import uvma_clknrst_pkg::*;   
+   import uvma_rvfi_pkg ::*;
+
+   // Forward decl of sequencer for p_sequencer delcaration
+   typedef class uvma_rvvi_sqr_c;
+
    // Constants / Structs / Enums
-   `include "uvma_clknrst_constants.sv"
-   `include "uvma_clknrst_tdefs.sv"
+   `include "uvma_rvvi_constants.sv"
+   `include "uvma_rvvi_tdefs.sv"
    
    // Objects
-   `include "uvma_clknrst_cfg.sv"
-   `include "uvma_clknrst_cntxt.sv"
+   `include "uvma_rvvi_cfg.sv"
+   `include "uvma_rvvi_cntxt.sv"
    
    // High-level transactions
-   `include "uvma_clknrst_mon_trn.sv"
-   `include "uvma_clknrst_mon_trn_logger.sv"
-   `include "uvma_clknrst_seq_item.sv"
-   `include "uvma_clknrst_seq_item_logger.sv"
-   
-   // Agent components
-   `include "uvma_clknrst_cov_model.sv"
-   `include "uvma_clknrst_drv.sv"
-   `include "uvma_clknrst_mon.sv"
-   `include "uvma_clknrst_sqr.sv"
-   `include "uvma_clknrst_agent.sv"
+   `include "seq/uvma_rvvi_state_seq_item.sv"
+   `include "seq/uvma_rvvi_control_seq_item.sv"
+   `include "uvma_rvvi_mon_trn_logger.sv"
    
    // Sequences
-   `include "uvma_clknrst_base_seq.sv"
-   `include "uvma_clknrst_stop_clk_seq.sv"
-   `include "uvma_clknrst_restart_clk_seq.sv"
-   `include "uvma_clknrst_seq_lib.sv"
-   
-endpackage : uvma_clknrst_pkg
+   `include "seq/uvma_rvvi_base_seq.sv"
+   `include "seq/uvma_rvvi_control_seq.sv"
 
+   // Agent components   
+   `include "uvma_rvvi_state_mon.sv"
+   `include "uvma_rvvi_sqr.sv"
+   `include "uvma_rvvi_drv.sv"
+   `include "uvma_rvvi_agent.sv"
+      
+endpackage : uvma_rvvi_pkg
 
-`endif // __UVMA_CLKNRST_PKG_SV__
+// Interface(s) / Module(s) / Checker(s)
+//`include "uvma_rvvi_csr_if.sv"
 
+`endif // __UVMA_RVVI_PKG_SV__

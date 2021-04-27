@@ -252,6 +252,7 @@ bind cv32e40x_wrapper
 
     uvmt_cv32e40x_debug_assert u_debug_assert(.cov_assert_if(debug_cov_assert_if));
 
+    uvmt_cv32e40x_rvvi_handcar u_rvvi_handcar();
     /**
     * ISS WRAPPER instance:
     */   
