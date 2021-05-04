@@ -37,8 +37,8 @@ DPI_DASM_SPIKE_REPO   ?= https://github.com/riscv/riscv-isa-sim.git
 DPI_DASM_SPIKE_BRANCH ?= master
 DPI_DASM_SPIKE_HASH   ?= 8faa928819fb551325e76b463fc0c978e22f5be3
 
-FORCE_RISCV_REPO    ?= https://github.com/openhwgroup/force-riscv.git
-FORCE_RISCV_BRANCH  ?= master
-FORCE_RISCV_HASH	?= b795ce6f0ecc7de080da0ab1e9017b1f6cb5fd71
+FORCE_RISCV_REPO    ?= https://github.com/strichmo/force-riscv.git
+FORCE_RISCV_BRANCH  ?= strichmo/temp/regen_handcar_silabs
+FORCE_RISCV_HASH	?= head
 
 
