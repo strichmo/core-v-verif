@@ -42,7 +42,7 @@ ifeq ($(USE_ISS),YES)
 	DSIM_RUN_FLAGS     += +USE_ISS
 endif
 ifeq ($(call IS_YES,$(USE_RVVI)),YES)
-    XRUN_RUN_FLAGS     += +USE_RVVI
+    DSIM_RUN_FLAGS     += +USE_RVVI
 endif
 
 # Seed management for constrained-random sims. This is an intentional repeat
